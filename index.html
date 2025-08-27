@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petits Horizons - Guide du Portugal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bleu-ocean: #2E86AB;
+            --jaune-soleil: #F18F01;
+            --vert-nature: #C73E1D;
+            --vert-sapin: #1B4332;
+            --orange-terre: #E76F51;
+            --brun-clair: #F4A261;
+            --blanc-casse: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, var(--blanc-casse) 0%, #E9ECEF 100%);
+            min-height: 100vh;
+            color: var(--vert-sapin);
+        }
+
+        .header {
+            background: var(--vert-sapin);
+            color: var(--blanc-casse);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: var(--orange-terre);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .site-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(rgba(46, 134, 171, 0.8), rgba(46, 134, 171, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><path d="M0,200 Q300,100 600,200 T1200,200 L1200,400 L0,400 Z" fill="%232E86AB"/></svg>');
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            color: var(--blanc-casse);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--blanc-casse);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tabs-container {
+            background: var(--blanc-casse);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--vert-sapin);
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: var(--blanc-casse);
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab:hover {
+            background: rgba(46, 134, 171, 0.2);
+        }
+
+        .tab.active {
+            background: var(--orange-terre);
+            border-bottom-color: var(--jaune-soleil);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--vert-sapin);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--orange-terre);
+            padding-bottom: 0.5rem;
+        }
+
+        .city-card {
+            background: linear-gradient(135deg, var(--bleu-ocean), var(--brun-clair));
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .city-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--blanc-casse);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .activity-list {
+            background: var(--blanc-casse);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--jaune-soleil);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .itinerary-day {
+            background: var(--jaune-soleil);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--orange-terre);
+        }
+
+        .day-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--vert-sapin);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: var(--bleu-ocean);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            color: var(--blanc-casse);
+        }
+
+        .price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--blanc-casse);
+            font-size: 1.2rem;
+        }
+
+        .recommendation-card {
+            background: linear-gradient(135deg, var(--orange-terre), var(--brun-clair));
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            color: var(--blanc-casse);
+        }
+
+        .recommendation-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: var(--jaune-soleil);
+            font-size: 1.2rem;
+        }
+
+        .info-box {
+            background: var(--bleu-ocean);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--vert-sapin);
+            color: var(--blanc-casse);
+        }
+
+        .highlight {
+            background: var(--jaune-soleil);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+            color: var(--vert-sapin);
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                flex-wrap: wrap;
+            }
+            
+            .tab {
+                flex: 1;
+                min-width: 120px;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">PH</div>
+        <h1 class="site-title">PETITS HORIZONS</h1>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Guide Complet du Portugal</h1>
+            <p>Découvrez l'âme lusitanienne : côtes sauvages, villes historiques et traditions authentiques</p>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('introduction')">Introduction</button>
+                <button class="tab" onclick="showTab('villes')">Top Villes</button>
+                <button class="tab" onclick="showTab('itineraire')">Itinéraire 10j</button>
+                <button class="tab" onclick="showTab('logistique')">Logistique</button>
+                <button class="tab" onclick="showTab('nourriture')">Gastronomie</button>
+                <button class="tab" onclick="showTab('culture')">Culture</button>
+                <button class="tab" onclick="showTab('budget')">Budget</button>
+                <button class="tab" onclick="showTab('recommandations')">Nos Coups de Cœur</button>
+            </div>
+
+            <div id="introduction" class="tab-content active">
+                <h2 class="section-title">Bem-vindos ao Portugal</h2>
+                
+                <div class="info-box">
+                    <h3>Pourquoi visiter le Portugal ?</h3>
+                    <p>Le Portugal, terre de navigateurs et de découvreurs, offre une diversité exceptionnelle sur 92 212 km². Des plages dorées de l'Algarve aux montagnes du Douro, en passant par les villes historiques et les villages authentiques, ce pays préserve son âme tout en embrassant la modernité.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">📍 Informations Essentielles</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Capitale :</strong> Lisbonne (Lisboa)</li>
+                            <li><strong>Population :</strong> 10,3 millions d'habitants</li>
+                            <li><strong>Superficie :</strong> 92 212 km²</li>
+                            <li><strong>Monnaie :</strong> Euro (€)</li>
+                            <li><strong>Langue :</strong> Portugais</li>
+                            <li><strong>Religion :</strong> Catholique (81%)</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🌍 Géographie & Climat</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Côte atlantique :</strong> 943 km de littoral</li>
+                            <li><strong>Point culminant :</strong> Torre (1 993m)</li>
+                            <li><strong>Climat :</strong> Méditerranéen au sud, océanique au nord</li>
+                            <li><strong>Meilleure période :</strong> Mai-Octobre</li>
+                            <li><strong>Régions :</strong> 18 districts + Açores + Madère</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>🏛️ Histoire en Bref</h3>
+                    <p>Fondé en 1143, le Portugal est l'un des plus anciens États-nations d'Europe. Empire maritime aux XVe-XVIe siècles, il a découvert de nouvelles routes commerciales et établi des colonies sur tous les continents. Membre fondateur de l'OTAN et de l'UE, le pays a connu la Révolution des Œillets en 1974, marquant le retour à la démocratie.</p>
+                </div>
+            </div>
+
+            <div id="villes" class="tab-content">
+                <h2 class="section-title">🏙️ Top des Villes à Visiter</h2>
+
+                <div class="city-card">
+                    <h3 class="city-name">🏛️ Lisbonne - Capitale des Sept Collines</h3>
+                    <p style="color: var(--blanc-casse);">Capitale vibrante mêlant tradition et modernité, célèbre pour ses tramways, ses azulejos et son fado.</p>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏰</div>
+                            <div>
+                                <strong>Quartier de Belém</strong><br>
+                                Tour de Belém, Monastère des Hiéronymites, Monument aux Découvertes
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🚋</div>
+                            <div>
+                                <strong>Tramway 28</strong><br>
+                                Circuit touristique emblématique traversant les quartiers historiques
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🎵</div>
+                            <div>
+                                <strong>Alfama & Fado</strong><br>
+                                Quartier médiéval, maisons de fado authentiques, miradouros panoramiques
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🍷 Porto - Ville du Vin de Porto</h3>
+                    <p style="color: var(--blanc-casse);">Cité historique classée UNESCO, berceau du célèbre vin de Porto et joyau architectural.</p>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏛️</div>
+                            <div>
+                                <strong>Centre Historique</strong><br>
+                                Ribeira, Sé do Porto, Palais de la Bourse, Torre dos Clérigos
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🍷</div>
+                            <div>
+                                <strong>Caves de Vila Nova de Gaia</strong><br>
+                                Dégustation de Porto, caves historiques, vue sur le Douro
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">📚</div>
+                            <div>
+                                <strong>Librairie Lello</strong><br>
+                                Plus belle librairie du monde, inspiration pour Harry Potter
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🏰 Óbidos - Cité Médiévale</h3>
+                    <p style="color: var(--blanc-casse);">Village fortifié parfaitement préservé, surnommé "Ville-Musée" du Portugal.</p>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏰</div>
+                            <div>
+                                <strong>Remparts Médiévaux</strong><br>
+                                Promenade sur les murailles, vue panoramique sur la campagne
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🍒</div>
+                            <div>
+                                <strong>Ginjinha d'Óbidos</strong><br>
+                                Liqueur de cerise servie dans des gobelets en chocolat
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🎨</div>
+                            <div>
+                                <strong>Rues Pittoresques</strong><br>
+                                Maisons blanches aux volets colorés, boutiques d'artisanat
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🏖️ Lagos - Perle de l'Algarve</h3>
+                    <p style="color: var(--blanc-casse);">Station balnéaire aux plages spectaculaires et formations rocheuses uniques.</p>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏖️</div>
+                            <div>
+                                <strong>Ponta da Piedade</strong><br>
+                                Falaises dorées, grottes marines, plages secrètes accessibles en bateau
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🚤</div>
+                            <div>
+                                <strong>Excursions Marines</strong><br>
+                                Observation des dauphins, grottes de Benagil, plages cachées
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏛️</div>
+                            <div>
+                                <strong>Centre Historique</strong><br>
+                                Église Santo António, murailles, marché aux esclaves (musée)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🏔️ Sintra - Ville Romantique</h3>
+                    <p style="color: var(--blanc-casse);">Résidence d'été royale aux palais féeriques et jardins luxuriants.</p>
+                    
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏰</div>
+                            <div>
+                                <strong>Palais da Pena</strong><br>
+                                Château romantique coloré, parc de 200 hectares, vue panoramique
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏛️</div>
+                            <div>
+                                <strong>Quinta da Regaleira</strong><br>
+                                Palais mystérieux, jardins initiatiques, puits inversé
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🌊</div>
+                            <div>
+                                <strong>Cabo da Roca</strong><br>
+                                Point le plus occidental d'Europe continentale, phare historique
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="itineraire" class="tab-content">
+                <h2 class="section-title">🗺️ Itinéraire Idéal - 10 Jours</h2>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 1-2 : Arrivée à Lisbonne</h3>
+                    <p><strong>Jour 1 :</strong> Atterrissage, installation, découverte du Bairro Alto et Chiado</p>
+                    <p><strong>Jour 2 :</strong> Belém (Tour, Monastère, Pastéis), Tramway 28, Alfama et fado</p>
+                    <p><span class="highlight">Hébergement :</span> Lisbonne centre | <span class="highlight">Transport :</span> Métro, tramway</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 3 : Sintra & Cascais</h3>
+                    <p><strong>Matin :</strong> Train vers Sintra, visite du Palais da Pena</p>
+                    <p><strong>Après-midi :</strong> Quinta da Regaleira ou Palais National</p>
+                    <p><strong>Soir :</strong> Cascais, dîner face à l'océan, retour à Lisbonne</p>
+                    <p><span class="highlight">Transport :</span> Train urbain + bus local | <span class="highlight">Conseil :</span> Réserver les palais à l'avance</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 4 : Lisbonne → Óbidos → Porto</h3>
+                    <p><strong>Matin :</strong> Route vers Óbidos (1h), visite de la cité médiévale</p>
+                    <p><strong>Après-midi :</strong> Continuation vers Porto (2h30), installation</p>
+                    <p><strong>Soir :</strong> Première découverte de la Ribeira</p>
+                    <p><span class="highlight">Distance :</span> 350 km | <span class="highlight">Hébergement :</span> Porto centre</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 5-6 : Exploration de Porto</h3>
+                    <p><strong>Jour 5 :</strong> Centre historique, Torre dos Clérigos, Librairie Lello, Palais de la Bourse</p>
+                    <p><strong>Jour 6 :</strong> Caves de Vila Nova de Gaia, dégustation de Porto, Sé do Porto</p>
+                    <p><span class="highlight">Activité :</span> Croisière sur le Douro | <span class="highlight">Gastronomie :</strong> Francesinha, pastéis de nata</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 7 : Vallée du Douro</h3>
+                    <p><strong>Matin :</strong> Route vers Peso da Régua (2h)</p>
+                    <p><strong>Après-midi :</strong> Visite de quinta (domaine viticole), dégustation</p>
+                    <p><strong>Soir :</strong> Pinhão, dîner dans une quinta, nuit sur place</p>
+                    <p><span class="highlight">Paysages :</span> Vignobles en terrasses classés UNESCO</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 8 : Douro → Coimbra → Lisbonne</h3>
+                    <p><strong>Matin :</strong> Route vers Coimbra (2h), visite de l'Université</p>
+                    <p><strong>Après-midi :</strong> Bibliothèque Joanina, centre historique</p>
+                    <p><strong>Soir :</strong> Route vers Lisbonne (2h), installation</p>
+                    <p><span class="highlight">Culture :</span> Plus ancienne université du Portugal (1290)</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 9 : Lisbonne → Lagos (Algarve)</h3>
+                    <p><strong>Matin :</strong> Vol ou train vers Faro, puis route vers Lagos</p>
+                    <p><strong>Après-midi :</strong> Plage Dona Ana, Ponta da Piedade</p>
+                    <p><strong>Soir :</strong> Centre historique de Lagos, fruits de mer</p>
+                    <p><span class="highlight">Alternative :</span> Route directe 3h depuis Lisbonne</p>
+                </div>
+
+                <div class="itinerary-day">
+                    <h3 class="day-title">Jour 10 : Algarve & Départ</h3>
+                    <p><strong>Matin :</strong> Excursion aux grottes de Benagil en bateau</p>
+                    <p><strong>Après-midi :</strong> Dernière baignade, route vers l'aéroport de Faro</p>
+                    <p><strong>Soir :</strong> Vol de retour</p>
+                    <p><span class="highlight">Souvenir :</span> Azulejos, liège, vin de Porto</p>
+                </div>
+            </div>
+
+            <div id="logistique" class="tab-content">
+                <h2 class="section-title">🚗 Logistique & Transport</h2>
+
+                <div class="info-box">
+                    <h3>✈️ Aéroports Principaux</h3>
+                    <p><strong>Lisbonne (LIS) :</strong> Aéroport Humberto Delgado, 7 km du centre. Métro rouge direct.</p>
+                    <p><strong>Porto (OPO) :</strong> Aéroport Francisco Sá Carneiro, 11 km du centre. Métro violet.</p>
+                    <p><strong>Faro (FAO) :</strong> Porte d'entrée de l'Algarve, bus et trains vers les stations balnéaires.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🚗 Location de Voiture</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Permis :</strong> Français valide suffisant</li>
+                            <li><strong>Âge minimum :</strong> 21 ans (supplément -25 ans)</li>
+                            <li><strong>Assurance :</strong> Tous risques recommandée</li>
+                            <li><strong>Carburant :</strong> Essence 1,65€/L, Diesel 1,55€/L</li>
+                            <li><strong>Péages :</strong> A1 Lisbonne-Porto : 22€</li>
+                            <li><strong>Via Verde :</strong> Télépéage automatique</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🚊 Transports Publics</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Lisbonne :</strong> Métro, tramway, bus, funiculaires</li>
+                            <li><strong>Porto :</strong> Métro, bus, tramway historique</li>
+                            <li><strong>Trains CP :</strong> Lisbonne-Porto 2h30, 25-40€</li>
+                            <li><strong>Alfa Pendular :</strong> Train rapide, réservation obligatoire</li>
+                            <li><strong>Cartes :</strong> Lisboa Card, Andante (Porto)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>📱 Connectivité & e-SIM</h3>
+                    <p><strong>Opérateurs :</strong> MEO, Vodafone, NOS - Excellente couverture nationale</p>
+                    <p><strong>e-SIM recommandées :</strong></p>
+                    <ul>
+                        <li><strong>Airalo Europe :</strong> 1GB/7j = 4,50€, 5GB/30j = 16€</li>
+                        <li><strong>Holafly :</strong> Données illimitées 10j = 34€</li>
+                        <li><strong>Orange Holiday :</strong> 8GB Europe = 39€</li>
+                    </ul>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🛣️ Conduite au Portugal</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Côté :</strong> Droite (comme en France)</li>
+                            <li><strong>Vitesse :</strong> 50 km/h ville, 90 km/h route, 120 km/h autoroute</li>
+                            <li><strong>Alcool :</strong> 0,5‰ (comme en France)</li>
+                            <li><strong>Feux :</strong> Pas obligatoires de jour</li>
+                            <li><strong>Stationnement :</strong> Zones bleues payantes centres-villes</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🎫 Formalités</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Documents :</strong> CNI ou passeport valide</li>
+                            <li><strong>Visa :</strong> Aucun (UE)</li>
+                            <li><strong>Santé :</strong> Carte européenne d'assurance maladie</li>
+                            <li><strong>Vaccins :</strong> Aucun obligatoire</li>
+                            <li><strong>Animaux :</strong> Passeport européen + vaccins</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="nourriture" class="tab-content">
+                <h2 class="section-title">🍽️ Gastronomie Portugaise</h2>
+
+                <div class="info-box">
+                    <h3>🐟 L'Art de la Morue</h3>
+                    <p>Le Portugal possède plus de 365 recettes de morue (bacalhau), une pour chaque jour de l'année ! Ce "fidèle ami" accompagne les Portugais depuis les grandes découvertes maritimes et reste l'âme de leur cuisine.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🐟 Poissons & Fruits de Mer</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">🐟</div>
+                                <div>
+                                    <strong>Bacalhau à Brás</strong><br>
+                                    Morue effilochée aux pommes de terre et œufs brouillés
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🦐</div>
+                                <div>
+                                    <strong>Cataplana de Marisco</strong><br>
+                                    Fruits de mer mijotés dans la cataplana (marmite en cuivre)
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🐠</div>
+                                <div>
+                                    <strong>Sardines Grillées</strong><br>
+                                    Spécialité estivale, servies avec poivrons et pain de maïs
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🥩 Viandes & Plats Traditionnels</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">🥩</div>
+                                <div>
+                                    <strong>Francesinha</strong><br>
+                                    Sandwich de Porto avec viandes, fromage et sauce secrète
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🐷</div>
+                                <div>
+                                    <strong>Leitão da Bairrada</strong><br>
+                                    Cochon de lait rôti, spécialité de la région de Coimbra
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🍲</div>
+                                <div>
+                                    <strong>Cozido à Portuguesa</strong><br>
+                                    Pot-au-feu portugais avec viandes, légumes et chouriço
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🧀 Fromages & Charcuteries</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🧀</div>
+                            <div>
+                                <strong>Queijo da Serra</strong><br>
+                                Fromage de brebis crémeux de la Serra da Estrela
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🥓</div>
+                            <div>
+                                <strong>Chouriço</strong><br>
+                                Saucisson fumé épicé, se décline en plusieurs variétés
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🍖</div>
+                            <div>
+                                <strong>Presunto</strong><br>
+                                Jambon cru portugais, particulièrement celui de Chaves
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🍷 Vins & Boissons</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Vinho do Porto :</strong> Vin muté mondialement célèbre</li>
+                            <li><strong>Vinho Verde :</strong> Vin léger et pétillant du Minho</li>
+                            <li><strong>Douro :</strong> Vins rouges de la vallée du Douro</li>
+                            <li><strong>Ginjinha :</strong> Liqueur de cerise de Lisbonne</li>
+                            <li><strong>Bière :</strong> Super Bock, Sagres</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🍰 Pâtisseries & Desserts</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Pastéis de Nata :</strong> Flans aux œufs de Belém</li>
+                            <li><strong>Bolo Rei :</strong> Gâteau des rois de Noël</li>
+                            <li><strong>Ovos Moles :</strong> Douceur d'Aveiro aux jaunes d'œufs</li>
+                            <li><strong>Travesseiros :</strong> Pâtisseries d'amandes de Sintra</li>
+                            <li><strong>Arroz Doce :</strong> Riz au lait à la cannelle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>🍽️ Où Manger ?</h3>
+                    <p><strong>Tasca :</strong> Petit restaurant familial, cuisine authentique et prix doux</p>
+                    <p><strong>Marisqueira :</strong> Restaurant spécialisé en fruits de mer</p>
+                    <p><strong>Churrasqueira :</strong> Grillades, poulet piri-piri</p>
+                    <p><strong>Prix moyens :</strong> Menu du jour 8-12€, restaurant 15-25€</p>
+                </div>
+            </div>
+
+            <div id="culture" class="tab-content">
+                <h2 class="section-title">🎭 Culture & Traditions</h2>
+
+                <div class="info-box">
+                    <h3>🎵 Le Fado - Âme Portugaise</h3>
+                    <p>Le fado, inscrit au patrimoine UNESCO, exprime la "saudade" - cette mélancolie douce-amère typiquement portugaise. Né dans les quartiers populaires de Lisbonne au XIXe siècle, il raconte l'amour, la nostalgie et le destin avec une intensité émotionnelle unique.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🎨 Arts & Artisanat</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">🎨</div>
+                                <div>
+                                    <strong>Azulejos</strong><br>
+                                    Carreaux de faïence peints, art décoratif emblématique
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🏺</div>
+                                <div>
+                                    <strong>Céramique de Caldas</strong><br>
+                                    Poteries traditionnelles colorées, figurines populaires
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🧵</div>
+                                <div>
+                                    <strong>Broderies de Madère</strong><br>
+                                    Dentelles et broderies fines, savoir-faire ancestral
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">⛪ Religion & Spiritualité</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">⛪</div>
+                                <div>
+                                    <strong>Catholicisme</strong><br>
+                                    81% de la population, traditions religieuses fortes
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🙏</div>
+                                <div>
+                                    <strong>Fátima</strong><br>
+                                    Lieu de pèlerinage mondial, apparitions de 1917
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">🎉</div>
+                                <div>
+                                    <strong>Festas Populares</strong><br>
+                                    Fêtes des saints populaires, processions colorées
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">🏛️ Architecture Remarquable</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🏰</div>
+                            <div>
+                                <strong>Style Manuélin</strong><br>
+                                Renaissance portugaise, Monastère des Hiéronymites
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏛️</div>
+                            <div>
+                                <strong>Baroque</strong><br>
+                                Églises dorées, azulejos décoratifs, fontaines ornées
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏘️</div>
+                            <div>
+                                <strong>Architecture Populaire</strong><br>
+                                Maisons colorées, balcons en fer forgé, toits de tuiles
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🎉 Fêtes & Festivals</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Santos Populares :</strong> Juin, fêtes de rue à Lisbonne</li>
+                            <li><strong>São João :</strong> 24 juin, Porto en fête</li>
+                            <li><strong>Festival de Fado :</strong> Septembre, Lisbonne</li>
+                            <li><strong>Carnaval :</strong> Février-Mars, Torres Vedras</li>
+                            <li><strong>Festa dos Tabuleiros :</strong> Juillet, Tomar (tous les 4 ans)</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🤝 Savoir-Vivre</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Salutation :</strong> Poignée de main, "Bom dia/Boa tarde"</li>
+                            <li><strong>Hospitalité :</strong> Très chaleureuse, invitations fréquentes</li>
+                            <li><strong>Repas :</strong> Déjeuner 12h-14h, dîner 19h30-21h30</li>
+                            <li><strong>Ponctualité :</strong> Respectée mais ambiance détendue</li>
+                            <li><strong>Pourboire :</strong> 5-10% dans les restaurants</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>📚 Littérature & Personnalités</h3>
+                    <p><strong>Luís de Camões :</strong> Poète national, auteur des "Lusiades" (1572), épopée des découvertes portugaises. <strong>Fernando Pessoa :</strong> Poète moderne aux multiples hétéronymes. <strong>José Saramago :</strong> Prix Nobel de littérature 1998. <strong>Cristiano Ronaldo :</strong> Ambassadeur sportif mondial du Portugal.</p>
+                </div>
+            </div>
+
+            <div id="budget" class="tab-content">
+                <h2 class="section-title">💰 Budget de Voyage</h2>
+
+                <div class="info-box">
+                    <h3>💡 Aperçu Général</h3>
+                    <p>Le Portugal offre un excellent rapport qualité-prix en Europe occidentale. Les prix sont généralement 20-30% inférieurs à la France, particulièrement pour la restauration et l'hébergement hors des zones très touristiques.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🏨 Hébergement (par nuit)</h3>
+                        <div class="budget-item">
+                            <span>Auberge de jeunesse</span>
+                            <span class="price">18-30€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Hôtel 3* (villes)</span>
+                            <span class="price">60-90€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Hôtel 3* (Algarve été)</span>
+                            <span class="price">80-120€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Hôtel 4* (Lisbonne/Porto)</span>
+                            <span class="price">100-180€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Quinta/Pousada</span>
+                            <span class="price">80-150€</span>
+                        </div>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🍽️ Restauration (par personne)</h3>
+                        <div class="budget-item">
+                            <span>Tasca locale</span>
+                            <span class="price">8-12€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Restaurant traditionnel</span>
+                            <span class="price">15-25€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Restaurant gastronomique</span>
+                            <span class="price">30-50€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Pastéis de nata</span>
+                            <span class="price">1,20€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Verre de vin</span>
+                            <span class="price">3-6€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">🚗 Transport</h3>
+                        <div class="budget-item">
+                            <span>Location voiture (10j)</span>
+                            <span class="price">200-400€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Essence (plein 50L)</span>
+                            <span class="price">82€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Train Lisbonne-Porto</span>
+                            <span class="price">25-40€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Métro Lisbonne (jour)</span>
+                            <span class="price">6,40€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Vol Paris-Lisbonne</span>
+                            <span class="price">150-400€</span>
+                        </div>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">🎯 Activités & Visites</h3>
+                        <div class="budget-item">
+                            <span>Palais de Sintra</span>
+                            <span class="price">10-15€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Caves de Porto (dégustation)</span>
+                            <span class="price">15-25€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Excursion grottes Benagil</span>
+                            <span class="price">25-35€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Musées nationaux</span>
+                            <span class="price">5-10€</span>
+                        </div>
+                        <div class="budget-item">
+                            <span>Spectacle de fado</span>
+                            <span class="price">25-40€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="city-card">
+                    <h3 class="city-name">📊 Budgets Types (10 jours, 2 personnes)</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">🎒</div>
+                            <div>
+                                <strong>Budget Routard</strong><br>
+                                Auberges, transports publics, tascas locales : <span class="highlight">800-1100€</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🏨</div>
+                            <div>
+                                <strong>Budget Confort</strong><br>
+                                Hôtels 3*, voiture, restaurants variés : <span class="highlight">1500-2200€</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">✨</div>
+                            <div>
+                                <strong>Budget Luxe</strong><br>
+                                Hôtels 4*+, quintas, gastronomie : <span class="highlight">2800-4000€</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>💳 Moyens de Paiement</h3>
+                    <p><strong>Cartes :</strong> Largement acceptées, même pour petits montants</p>
+                    <p><strong>Espèces :</strong> Utiles pour marchés, tascas, pourboires</p>
+                    <p><strong>Distributeurs :</strong> Nombreux, frais bancaires variables</p>
+                    <p><strong>Contactless :</strong> Très répandu, limite 50€</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">💡 Conseils Économies</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li>Voyager hors saison (octobre-avril)</li>
+                            <li>Menu do dia dans les restaurants</li>
+                            <li>Cartes touristiques (Lisboa Card, Porto Card)</li>
+                            <li>Hébergement en quinta rurale</li>
+                            <li>Marchés locaux pour pique-niques</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">⚠️ Coûts Cachés</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li>Couvert (pão e azeitonas) : 1-3€</li>
+                            <li>Péages autoroutes</li>
+                            <li>Stationnement centres historiques</li>
+                            <li>Supplément terrasse restaurants</li>
+                            <li>Frais de change hors zone euro</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="recommandations" class="tab-content">
+                <h2 class="section-title">⭐ Nos Coups de Cœur par Ville</h2>
+
+                <!-- LISBONNE -->
+                <div class="city-card">
+                    <h3 class="city-name">🏛️ LISBONNE - Capitale des Sept Collines</h3>
+                    
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍽️ Restaurant : Ramiro</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.6/5 sur Google (8,247 avis)</span>
+                        </div>
+                        <p><strong>Spécialité :</strong> Institution des fruits de mer depuis 1956, marisqueira authentique</p>
+                        <p><strong>Plats signature :</strong> Percebes, gambas à l'ail, bifana légendaire, bière Super Bock</p>
+                        <p><strong>Prix :</strong> 25-35€/personne | <strong>Adresse :</strong> Av. Almirante Reis 1H | <strong>Tél :</strong> +351 21 885 1024</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍸 Bar : Pensão Amor</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.4/5 sur Google (1,892 avis)</span>
+                        </div>
+                        <p><strong>Concept :</strong> Bar bohème dans ancien bordel, décor érotique vintage et ambiance unique</p>
+                        <p><strong>Cocktails signature :</strong> Saudade Sour, Fado Martini, sélection de ginjas</p>
+                        <p><strong>Prix :</strong> Cocktails 8-12€ | <strong>Adresse :</strong> R. do Alecrim 19 | <strong>Horaires :</strong> 18h-2h</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🏨 Hôtel : Memmo Alfama</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.7/5 sur Google (2,156 avis)</span>
+                        </div>
+                        <p><strong>Standing :</strong> Hôtel design 4* au cœur de l'Alfama, vue panoramique sur le Tage</p>
+                        <p><strong>Services :</strong> Rooftop bar, spa, restaurant, terrasse avec vue imprenable</p>
+                        <p><strong>Prix :</strong> 180-320€/nuit | <strong>Tél :</strong> +351 21 049 5660</p>
+                    </div>
+                </div>
+
+                <!-- PORTO -->
+                <div class="city-card">
+                    <h3 class="city-name">🍷 PORTO - Ville du Vin de Porto</h3>
+                    
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍽️ Restaurant : The Yeatman</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.8/5 sur Google (1,567 avis)</span>
+                        </div>
+                        <p><strong>Spécialité :</strong> Gastronomie étoilée Michelin avec vue sur Porto et le Douro</p>
+                        <p><strong>Plats signature :</strong> Cuisine moderne portugaise, accord mets-vins exceptionnels</p>
+                        <p><strong>Prix :</strong> Menu dégustation 120-180€ | <strong>Adresse :</strong> R. do Choupelo | <strong>Tél :</strong> +351 22 013 3100</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍸 Bar : Plano B</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.5/5 sur Google (743 avis)</span>
+                        </div>
+                        <p><strong>Concept :</strong> Bar à cocktails créatifs dans cave voûtée, ambiance intimiste</p>
+                        <p><strong>Cocktails signature :</strong> Porto Tonic, Douro Mist, créations aux vins de Porto</p>
+                        <p><strong>Prix :</strong> Cocktails 7-11€ | <strong>Adresse :</strong> R. Cândido dos Reis 30 | <strong>Horaires :</strong> 18h-2h</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🏨 Hôtel : InterContinental Porto</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.6/5 sur Google (2,891 avis)</span>
+                        </div>
+                        <p><strong>Standing :</strong> Palace 5* face au Douro, architecture néoclassique restaurée</p>
+                        <p><strong>Services :</strong> Spa, 2 restaurants, bar panoramique, service de majordome</p>
+                        <p><strong>Prix :</strong> 220-400€/nuit | <strong>Tél :</strong> +351 22 040 8700</p>
+                    </div>
+                </div>
+
+                <!-- ÓBIDOS -->
+                <div class="city-card">
+                    <h3 class="city-name">🏰 ÓBIDOS - Cité Médiévale</h3>
+                    
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍽️ Restaurant : Alcaide</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.7/5 sur Google (1,234 avis)</span>
+                        </div>
+                        <p><strong>Spécialité :</strong> Cuisine traditionnelle dans cadre médiéval authentique</p>
+                        <p><strong>Plats signature :</strong> Cabrito assado, caldeirada de peixe, doces conventuais</p>
+                        <p><strong>Prix :</strong> 20-30€/personne | <strong>Adresse :</strong> R. Direita | <strong>Tél :</strong> +351 262 959 220</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍸 Bar : Bar Ibn Errik Rex</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.3/5 sur Google (456 avis)</span>
+                        </div>
+                        <p><strong>Concept :</strong> Bar médiéval dans les remparts, spécialité ginjinha d'Óbidos</p>
+                        <p><strong>Spécialités :</strong> Ginjinha en gobelet chocolat, vins régionaux, ambiance historique</p>
+                        <p><strong>Prix :</strong> Ginjinha 2€, Vins 4-8€ | <strong>Adresse :</strong> R. Direita | <strong>Horaires :</strong> 10h-20h</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🏨 Hôtel : Pousada Castelo de Óbidos</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.5/5 sur Google (1,789 avis)</span>
+                        </div>
+                        <p><strong>Standing :</strong> Pousada historique dans le château médiéval, expérience unique</p>
+                        <p><strong>Services :</strong> Restaurant gastronomique, spa, jardins, vue panoramique</p>
+                        <p><strong>Prix :</strong> 150-280€/nuit | <strong>Tél :</strong> +351 210 407 620</p>
+                    </div>
+                </div>
+
+                <!-- LAGOS -->
+                <div class="city-card">
+                    <h3 class="city-name">🏖️ LAGOS - Perle de l'Algarve</h3>
+                    
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍽️ Restaurant : Adega da Marina</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.6/5 sur Google (2,345 avis)</span>
+                        </div>
+                        <p><strong>Spécialité :</strong> Poissons frais et cataplana, vue sur la marina de Lagos</p>
+                        <p><strong>Plats signature :</strong> Cataplana de marisco, robalo grelhado, arroz de lingueirão</p>
+                        <p><strong>Prix :</strong> 25-40€/personne | <strong>Adresse :</strong> Av. dos Descobrimentos | <strong>Tél :</strong> +351 282 764 284</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍸 Bar : Stevie Ray's Blues Bar</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.7/5 sur Google (1,567 avis)</span>
+                        </div>
+                        <p><strong>Concept :</strong> Bar blues authentique, concerts live, ambiance décontractée</p>
+                        <p><strong>Spécialités :</strong> Cocktails tropicaux, bières artisanales, musique live quotidienne</p>
+                        <p><strong>Prix :</strong> Cocktails 6-9€ | <strong>Adresse :</strong> R. 25 de Abril 83 | <strong>Horaires :</strong> 19h-2h</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🏨 Hôtel : Cascade Wellness Resort</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.4/5 sur Google (3,234 avis)</span>
+                        </div>
+                        <p><strong>Standing :</strong> Resort 5* face à l'océan, architecture contemporaine</p>
+                        <p><strong>Services :</strong> Spa wellness, 3 piscines, accès direct plage, golf</p>
+                        <p><strong>Prix :</strong> 200-450€/nuit | <strong>Tél :</strong> +351 282 771 000</p>
+                    </div>
+                </div>
+
+                <!-- SINTRA -->
+                <div class="city-card">
+                    <h3 class="city-name">🏔️ SINTRA - Ville Romantique</h3>
+                    
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍽️ Restaurant : Tulhas</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.5/5 sur Google (1,678 avis)</span>
+                        </div>
+                        <p><strong>Spécialité :</strong> Cuisine régionale dans ancien grenier à céréales, cadre rustique</p>
+                        <p><strong>Plats signature :</strong> Leitão da Bairrada, bacalhau à Tulhas, queijadas de Sintra</p>
+                        <p><strong>Prix :</strong> 22-35€/personne | <strong>Adresse :</strong> R. Gil Vicente 4 | <strong>Tél :</strong> +351 21 923 2378</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🍸 Bar : Fonte da Pipa</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.2/5 sur Google (567 avis)</span>
+                        </div>
+                        <p><strong>Concept :</strong> Bar à vins dans cave historique, sélection de vins portugais</p>
+                        <p><strong>Spécialités :</strong> Vins du Douro, Colares, tapas traditionnelles, fromages régionaux</p>
+                        <p><strong>Prix :</strong> Verre 4-8€, Tapas 6-12€ | <strong>Adresse :</strong> R. Fonte da Pipa 11 | <strong>Horaires :</strong> 17h-1h</p>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3 class="recommendation-title">🏨 Hôtel : Tivoli Palácio de Seteais</h3>
+                        <div class="rating">
+                            <span class="stars">⭐⭐⭐⭐⭐</span>
+                            <span>4.6/5 sur Google (2,456 avis)</span>
+                        </div>
+                        <p><strong>Standing :</strong> Palace 5* du XVIIIe siècle, jardins romantiques, vue sur Pena</p>
+                        <p><strong>Services :</strong> Restaurant gastronomique, spa, piscine, golf nearby</p>
+                        <p><strong>Prix :</strong> 250-500€/nuit | <strong>Tél :</strong> +351 21 923 3200</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3>🎯 Pourquoi Ces Recommandations ?</h3>
+                    <p>Ces établissements incarnent l'excellence portugaise : authenticité préservée, qualité irréprochable et hospitalité légendaire. Ils offrent une immersion complète dans l'art de vivre lusitanien, des tascas traditionnelles aux palaces historiques.</p>
+                </div>
+
+                <div class="grid">
+                    <div class="city-card">
+                        <h3 class="city-name">📱 Réservations Conseillées</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li><strong>Restaurant :</strong> 2-3 jours à l'avance (été)</li>
+                            <li><strong>Spectacle fado :</strong> Réservation obligatoire</li>
+                            <li><strong>Hôtel :</strong> 1-2 mois à l'avance (haute saison)</li>
+                            <li><strong>Palais Sintra :</strong> Billets en ligne recommandés</li>
+                        </ul>
+                    </div>
+
+                    <div class="city-card">
+                        <h3 class="city-name">💡 Conseils Pratiques</h3>
+                        <ul style="color: var(--blanc-casse);">
+                            <li>Apprendre quelques mots de portugais</li>
+                            <li>Respecter les horaires de repas locaux</li>
+                            <li>Goûter les spécialités régionales</li>
+                            <li>Prévoir du liquide pour les pourboires</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Masquer tous les contenus
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Désactiver tous les onglets
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Afficher le contenu sélectionné
+            document.getElementById(tabName).classList.add('active');
+
+            // Activer l'onglet cliqué
+            event.target.classList.add('active');
+
+            // Scroll vers le haut du contenu
+            document.querySelector('.tabs-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Animation au scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.city-card, .recommendation-card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialisation des animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.city-card, .recommendation-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'975a9f63a143d108',t:'MTc1NjI4Nzc4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
